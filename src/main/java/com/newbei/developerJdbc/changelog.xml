@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet author="newbei1981" id="20201011-1">
+        <comment>Creation Developer table</comment>
+        <createTable tableName="developer">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accountId" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="newbei1981" id="20201011-2">
+        <comment>Creation Account table</comment>
+        <createTable tableName="account">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+                <column name="login" type="VARCHAR(255)">
+            </column>
+            <column name="password" type="VARCHAR(255)">
+            </column>
+            <column name="account_status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="newbei1981" id="20201011-3">
+        <comment>Creation skills table</comment>
+        <createTable tableName="skills">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+                <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="newbei1981" id="20201011-4">
+        <comment>Creation skillsdeveloper table (This table with skill data
+                                            concrete developer)</comment>
+        <createTable tableName="skills">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="developerId" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skillId" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="newbei1981" id="20201011-5">
+        <comment>inserting skills data to our tables</comment>
+        <sql>insert into skills(name) values ('JavaCore')</sql>
+        <sql>insert into skills(name) values ('JavaEE')</sql>
+        <sql>insert into skills(name) values ('Php')</sql>
+        <sql>insert into skills(name) values ('C++')</sql>
+        <sql>insert into skills(name) values ('Python')</sql>
+        <sql>insert into skills(name) values ('C#')</sql>
+        <sql>insert into skills(name) values ('HTML5')</sql>
+        <sql>insert into skills(name) values ('CSS3')</sql>
+        <sql>insert into skills(name) values ('WordPress')</sql>
+        <sql>insert into skills(name) values ('Android')</sql>
+    </changeSet>
+
+    <changeSet author="newbei1981" id="20201011-6">
+        <comment>inserting 1- record : For example  to our tables</comment>
+        <sql>insert into account(login, password, account_status) values ('leon','killer','ACTIVE')</sql>
+        <sql>insert into developer(name, accountId) values ('LeonKiller', 1)</sql>
+        <sql>insert into skillsDeveloper(developerId, skillId) values (1, 1)</sql>
+        <sql>insert into skillsDeveloper(developerId, skillId) values (1, 2)</sql>
+        <sql>insert into skillsDeveloper(developerId, skillId) values (1, 5)</sql>
+    </changeSet>
+
+</databaseChangeLog>
